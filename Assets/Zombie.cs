@@ -10,65 +10,66 @@ namespace NPC
             public ZombieData zombie;
             public State state;
 
-            private void Awake()
+            private void Awake() 
             {
-                ZombieDB.Register();
+                ZombieDB.Register(); //para generar los gustos y colores
+
                 zombie.color = ZombieDB.colors[Random.Range(0, 3)];
                 zombie.taste = ZombieDB.taste[Random.Range(0, 5)];
             }
-
             private void Start()
             {
                 StartCoroutine("AzarvarMove");
             }
-
             private void Update()
             {
                 Move();
             }
 
-            public void Move()
+            public void Move() //MOVIMIENTOS DEL ZOMBIE
             {
-                switch (state)
+                switch (state)// switch de estados del zombie
                 {
-                    case State.iddle:
+                    case State.iddle://quieto
                         break;
-                    case State.moving:
+                    case State.moving://caminando en dirección aleatoria
                         transform.position += transform.forward/15;
                         break;
-                    case State.rotating:
+                    case State.rotating://rotando en dirección aleatoria 
                         float roter;
                         if (zombie.dir) { roter = transform.eulerAngles.y + 1; }
                         else { roter = transform.eulerAngles.y - 1; }
                         transform.eulerAngles = new Vector3(0, roter, 0);
+                        //zombie.dir es un boleano que indica la dirección
+                        //cambiando su valor cada 5s en la corrutina
                         break;
                 }
-            }//MOVIMIENTOS DEL ZOMBIE
+            } 
 
             public enum State { iddle, moving, rotating };//ENUM DE ESTADOS
 
-            IEnumerator AzarvarMove()
+            IEnumerator AzarvarMove() //CORRUTINA 
             {
-                for (;;)
+                for (;;)//3 variables del zombie cambian cada 5s en la corrutina
                 {
-                    zombie.dir = !zombie.dir;
-                    state = (State)Random.Range(0, 3);
-                    transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);
-                    yield return new WaitForSeconds(2);
+                    zombie.dir = !zombie.dir;//dirección para el estado de rotación
+                    state = (State)Random.Range(0, 3);//estado 
+                    transform.eulerAngles = new Vector3(0, Random.Range(0, 360), 0);//dirección en eje y para movimiento
+                    yield return new WaitForSeconds(5);
                 }
                 
-            }//CORRUTINA 
+            } 
         }
 
-        public struct ZombieData
+        public struct ZombieData //ESTRUCTURA DE UN ZOMBIE
         {
             public string taste;
             public Color color;
             public int state;
             public bool dir;
-        } //ESTRUCTURA 
+        } 
 
-        public class ZombieDB : MonoBehaviour
+        public class ZombieDB : MonoBehaviour //BASE DE DATOS (COLORES, GUSTOS)
         {
             public static string[] taste;
             public static Color[] colors;
@@ -91,20 +92,8 @@ namespace NPC
                     "aparatos reproductores"
                 };
             }
-        } //BASE DE DATOS (COLORES, GUSTOS)
+        } //CLASE DE DATOS DEL ZOMBIE
 
-        
+
     }
 }
-
-
-//public static GameObject Create(GameObject reference)
-//{
-//    GameObject zombie = GameObject.Instantiate(reference) as GameObject;
-//    zombie.transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-//    zombie.AddComponent<Zombie>();
-//    zombie.GetComponent<Zombie>().zombie.color = ZombieDB.colors[0];
-//    zombie.GetComponent<Zombie>().zombie.taste = ZombieDB.taste[Random.Range(0, 5)];
-//    zombie.GetComponent<MeshRenderer>().material.color = zombie.GetComponent<Zombie>().zombie.color;
-//    return zombie;
-//}//GENERADOR DE ZOMBIES

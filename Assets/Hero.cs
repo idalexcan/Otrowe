@@ -6,8 +6,12 @@ using System;
 
 public class Hero : MonoBehaviour
 {
-    public static Vector3 pos;
-    public Color col;
+    /// <summary>
+    /// 1. var de posición estática para conectar la cámara
+    /// 2. velocidad del heroe es readonly, y es un número random
+    /// 3. canjump indica si el heroe se encuentra tocando un suelo
+    /// </summary>
+    public Vector3 pos;
     public readonly float speed;
     bool canJump = false;
 
@@ -16,11 +20,6 @@ public class Hero : MonoBehaviour
         System.Random rn = new System.Random();
         speed = rn.Next(3, 7);
         print("CONSTRUCTOR" + speed);
-    }
-
-    void Start()
-    {
-        GetComponent<MeshRenderer>().material.color = col;
     }
 
     void Update()

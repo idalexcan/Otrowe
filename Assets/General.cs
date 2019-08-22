@@ -8,12 +8,14 @@ public class General : MonoBehaviour
 {
     public GameObject reference;
     GameObject[] zombies;
-    GameObject TheHero;
+    public static GameObject TheHero;
+    public Color herocol;
+
     void Start()
     {
         TheHero = GameObject.Instantiate(reference) as GameObject;
         TheHero.AddComponent<Hero>();
-
+        TheHero.GetComponent<MeshRenderer>().material.color = herocol;
 
         zombies = new GameObject[15];
         for (int i = 0; i < zombies.Length; i++)
