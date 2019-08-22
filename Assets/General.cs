@@ -17,9 +17,9 @@ public class General : MonoBehaviour
     void Start()
     {
         chr = new Characters(reference, herocol);
+
         Allys.text = "Villagers: "+Characters.villagers.Length;
         Enemys.text = "Zombies: "+Characters.zombies.Length;
-        
     }
 }
 
