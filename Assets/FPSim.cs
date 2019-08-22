@@ -16,7 +16,7 @@ public class FPSim : MonoBehaviour
     void Update()
     {
         
-        transform.position = General.TheHero.GetComponent<Hero>().pos;
+        transform.position = Characters.TheHero.GetComponent<Hero>().pos;
         x -= Input.GetAxis("Mouse Y");
         y += Input.GetAxis("Mouse X");
         transform.eulerAngles = new Vector3(x, y, 0);

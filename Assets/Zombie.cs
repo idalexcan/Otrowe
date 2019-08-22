@@ -17,16 +17,16 @@ namespace NPC
                 zombie.color = ZombieDB.colors[Random.Range(0, 3)];
                 zombie.taste = ZombieDB.taste[Random.Range(0, 5)];
             }
-            private void Start()
+            private void Start() 
             {
                 StartCoroutine("AzarvarMove");
             }
-            private void Update()
+            private void Update() 
             {
                 Move();
             }
 
-            public void Move() //MOVIMIENTOS DEL ZOMBIE
+            public void Move() //MOVIMIENTOS DEL ZOMBIE 
             {
                 switch (state)// switch de estados del zombie
                 {
@@ -37,8 +37,10 @@ namespace NPC
                         break;
                     case State.rotating://rotando en dirección aleatoria 
                         float roter;
-                        if (zombie.dir) { roter = transform.eulerAngles.y + 1; }
-                        else { roter = transform.eulerAngles.y - 1; }
+                        if (zombie.dir)
+                        { roter = transform.eulerAngles.y + 1; }
+                        else
+                        { roter = transform.eulerAngles.y - 1; }
                         transform.eulerAngles = new Vector3(0, roter, 0);
                         //zombie.dir es un boleano que indica la dirección
                         //cambiando su valor cada 5s en la corrutina
@@ -67,9 +69,9 @@ namespace NPC
             public Color color;
             public int state;
             public bool dir;
-        } 
+        }
 
-        public class ZombieDB : MonoBehaviour //BASE DE DATOS (COLORES, GUSTOS)
+        public class ZombieDB //BASE DE DATOS (COLORES, GUSTOS)
         {
             public static string[] taste;
             public static Color[] colors;
@@ -83,7 +85,8 @@ namespace NPC
                     Color.green
                 };
 
-                taste = new string[5]
+                taste = new string[5] //registro de gustos
+
                 {
                     "páncreas",
                     "cerebro",

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using NPC.Enemy;
+using NPC.Ally;
 using System;
 
 public class Hero : MonoBehaviour
@@ -19,7 +20,6 @@ public class Hero : MonoBehaviour
     {
         System.Random rn = new System.Random();
         speed = rn.Next(3, 7);
-        print("CONSTRUCTOR" + speed);
     }
 
     void Update()
@@ -45,11 +45,11 @@ public class Hero : MonoBehaviour
         {
             Debug.Log("Waaaarrrr quiero comer " + col.gameObject.GetComponent<Zombie>().zombie.taste);
         }
-        //else if (col.gameObject.GetComponent<Citizen>())
-        //{
-        //    Debug.Log("Holandas! soy " + col.gameObject.GetComponent<Citizen>().citizen.name
-        //        + " y tengo " + col.gameObject.GetComponent<Citizen>().citizen.age + " años");
-        //    col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
-        //}
+        else if (col.gameObject.GetComponent<Villagers>())
+        {
+            Debug.Log("Holandas! soy " + col.gameObject.GetComponent<Villagers>().villager.name
+                + " y tengo " + col.gameObject.GetComponent<Villagers>().villager.age + " años");
+            col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+        }
     }
 }
