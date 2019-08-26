@@ -7,13 +7,22 @@ using UnityEngine.UI;
 
 public class General : MonoBehaviour
 {
+    
     public GameObject reference;//prefab de cubo para todos los personajes
     public Color herocol;//color para el héroe
+    public static float herospeed;//velocidad para el héroe
     public Text Allys;
     public  Text Enemys;
 
     Characters chr;//instancia de caráteres
-
+    public General()
+    {
+        print("se hja creado general!!!");
+    }
+    private void Awake()
+    {
+        herospeed = Random.Range(3f, 5f);
+    }
     void Start()
     {
         chr = new Characters(reference, herocol);
@@ -62,51 +71,13 @@ public class Characters
             villagers[i] = GameObject.Instantiate(reference) as GameObject;
             villagers[i].transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
             villagers[i].AddComponent<Villagers>();
-            villagers[i].GetComponent<MeshRenderer>().material.color = Color.yellow;
+            villagers[i].GetComponent<MeshRenderer>().material.color = Color.white;
         }
     }
 }
 
 
 
-
-//public class General : MonoBehaviour
-//{
-//    public GameObject reference;//prefab de cubo para todos los personajes
-//    GameObject[] zombies, villagers;
-//    public static GameObject TheHero;
-//    public Color herocol;
-
-//    void Start()
-//    {
-//        TheHero = GameObject.Instantiate(reference) as GameObject;
-//        TheHero.AddComponent<Hero>();
-//        TheHero.GetComponent<MeshRenderer>().material.color = herocol;
-
-//        zombies = new GameObject[5];
-//        for (int i = 0; i < zombies.Length; i++)
-//        {
-//            zombies[i] = GameObject.Instantiate(reference) as GameObject;
-//            zombies[i].transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-//            zombies[i].AddComponent<Zombie>();
-//            zombies[i].GetComponent<MeshRenderer>().material.color = zombies[i].GetComponent<Zombie>().zombie.color;
-//        }
-
-//        villagers = new GameObject[5];
-//        for (int i = 0; i < villagers.Length; i++)
-//        {
-//            villagers[i] = GameObject.Instantiate(reference) as GameObject;
-//            villagers[i].transform.position = new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
-//            villagers[i].AddComponent<Villagers>();
-//            villagers[i].GetComponent<MeshRenderer>().material.color = Color.yellow;
-//        }
-//    }
-
-//    void Update()
-//    {
-
-//    }
-//}
 
 
 

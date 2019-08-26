@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using NPC.Enemy;
 using NPC.Ally;
-using System;
+//using System;
 
 public class Hero : MonoBehaviour
 {
@@ -16,10 +16,17 @@ public class Hero : MonoBehaviour
     public readonly float speed;
     bool canJump = false;
 
+    private void Start()
+    {
+        Debug.Log("ñaña soy un giro");
+    }
+
     public Hero()
     {
-        System.Random rn = new System.Random();
-        speed = rn.Next(3, 7);
+        speed = General.herospeed;
+        Debug.Log("espid:  "+Randomer.herospeed);
+        //System.Random rn = new System.Random();
+        //speed = rn.Next(3, 7);
     }
 
     void Update()
@@ -52,4 +59,8 @@ public class Hero : MonoBehaviour
             col.gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         }
     }
+
+    
 }
+
+
