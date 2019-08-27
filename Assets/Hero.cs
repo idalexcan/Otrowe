@@ -19,12 +19,13 @@ public class Hero : MonoBehaviour
     private void Start()
     {
         Debug.Log("ñaña soy un giro");
+        Debug.Log("espid:  " + speed);
     }
 
     public Hero()
     {
         speed = General.herospeed;
-        Debug.Log("espid:  "+Randomer.herospeed);
+        
         //System.Random rn = new System.Random();
         //speed = rn.Next(3, 7);
     }

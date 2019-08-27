@@ -14,14 +14,12 @@ public class General : MonoBehaviour
     public Text Allys;
     public  Text Enemys;
 
-    Characters chr;//instancia de caráteres
-    public General()
-    {
-        print("se hja creado general!!!");
-    }
+    Characters chr;//instancia de clase Characteres
+
     private void Awake()
     {
         herospeed = Random.Range(3f, 5f);
+        Debug.Log("general: " + herospeed);
     }
     void Start()
     {
@@ -37,6 +35,7 @@ public class Characters
     
     public static GameObject[] zombies, villagers;//arreglos de NPC
     public static GameObject TheHero;//héroe
+
     //variables para cantidad de NPC
     readonly int minim;
     const int maxim = 25;
