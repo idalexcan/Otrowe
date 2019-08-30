@@ -12,6 +12,7 @@ public class Hero : MonoBehaviour
     /// 2. velocidad del heroe es readonly, y es un número random
     /// 3. canjump indica si el heroe se encuentra tocando un suelo
     /// </summary>
+    /// 
     public Vector3 pos;
     public readonly float speed;
     bool canJump = false;
